@@ -1,8 +1,5 @@
-/** (c) ACME Inc. 2010 */
+//ACME Inc. 2010 */
+  //This the date that a user created their account 
 
-/*
- * This is the date that a user created their account 
- */
 const date = '10/07/2014'
-
-console(date)
+console.log(date);
