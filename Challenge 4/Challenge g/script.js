@@ -1,34 +1,53 @@
-FREE_WARNING = 'Free shipping only applies to single customer orders'
-BANNED_WARNIN = 'Unfortunately we do not ship to your country of residence'
-NONE_SELECTED = '0'
+const FREE_WARNING = 'Free shipping only applies to single customer orders';
+const BANNED_WARNING = 'Unfortunately we do not ship to your country of residence';
+const NONE_SELECTED = 0;
 
-if (location = RSA) { shipping === 400 && currency === 'R' }
+// Changed 'location' to 'userLocation'
+let userLocation = 'RSA';
+let customers = 1;
+let currency = 'R';
 
-if location = NAM
-shipping = 600 
-else shipping = 800
+let shoes = 300 * 1;
+let toys = 100 * 5;
+let shirts = 150 * NONE_SELECTED;
+let batteries = 35 * 2;
+let pens = 5 * NONE_SELECTED;
 
-shoes = 300 * 1
-toys - 100 * 5
-shirts = 150 * 'NONE_SELECTED'
-batteries 35 * 2
-pens = 5 * 'NONE_SELECTED' 
-
-shipping = null
-currency = $
-
-if (shoes + batteries + pens + shirts > 1000 &&  ) {
-	if (location = NAM && customers < 2) {
-			if (location = RSA)
-		    shipping = 0 || calcShipping
-		}
-	}
+// Set shipping based on userLocation
+let shipping;
+if (userLocation === 'RSA') {
+  shipping = 400;
+  currency = 'R';
+} else if (userLocation === 'NAM') {
+  shipping = 600;
+  currency = '$';
+} else {
+  shipping = 800;
+  currency = '$';
 }
 
-if (shipping = 0) && (customers !=== 1) { console.log(WARNING) }
+// Calculate total before shipping
+let total = shoes + toys + shirts + batteries + pens;
 
-location = 'NK' ? console.log(WARNING) : console.log('price', currency, shoes + batteries + pens + shirts + shipping)
+// Free shipping logic
+const isFreeLocal = currency === 'R' && total >= 1000;
+const isFreeInt = currency === '$' && total >= 60;
+const isFree = isFreeLocal || isFreeInt;
 
-customers = '1'
-const location = 'RSA'
-currency = null
+// Free shipping warning logic
+const IS_FREE_WARNING = isFree && customers !== 1;
+
+// Apply free shipping if eligible and not warning
+if (isFree && !IS_FREE_WARNING) {
+  shipping = 0;
+}
+
+// New total with shipping
+const totalWithShipping = total + shipping;
+
+// Banned country logic
+const isBanned = userLocation === 'NK';
+
+// Output
+if (IS_FREE_WARNING) console.log(FREE_WARNING);
+console.log(isBanned ? BANNED_WARNING : 'Price: ' + currency + totalWithShipping);
